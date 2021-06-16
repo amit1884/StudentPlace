@@ -1,6 +1,17 @@
+*{
+    padding:0;
+    margin:0;
+    overflow-x:hidden;
+    scroll-behavior: smooth;
+    font-family: "Dosis", sans-serif;
+}
+
 .text-heading{
     font-size:30px;
     font-weight:600;
+}
+h6{
+    overflow: hidden;
 }
 @media(max-width:991px){
     .text-heading{
@@ -22,7 +33,7 @@
     color:#0F394C !important;
 }
 .bg-light{
-    background-color: #f5f8fd !important;
+    background-color: #dbe6f8 !important;
 }
 .bg-primary{
     background-color:#FF6600 !important;

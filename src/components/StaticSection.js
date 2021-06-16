@@ -3,7 +3,7 @@ import React from 'react'
 function StaticSection(props) {
     return (
         <div className="container-fluid static-section bg-light" style={{paddingTop:'60px',paddingBottom:'20px'}}>
-            <div className="text-heading text-secondary text-uppercase">
+            <div className="text-heading text-secondary text-uppercase" data-aos="fade-up">
                 {props?.heading}
             </div>
             <img src={props?.img} alt="" className="responsive-static-images" />

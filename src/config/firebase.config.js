@@ -1,12 +1,12 @@
+import firebase from "firebase";
 var firebaseConfig = {
-    apiKey: "AIzaSyAqJyBtPf8-sIaftPk7541Te1-R6_tMp8g",
-    authDomain: "studentstore-5c8cf.firebaseapp.com",
-    projectId: "studentstore-5c8cf",
-    storageBucket: "studentstore-5c8cf.appspot.com",
-    messagingSenderId: "436108834599",
-    appId: "1:436108834599:web:ef24b9d273eda9ae291b02",
-    measurementId: "G-323DJ2WX3C"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  apiKey: "AIzaSyAh1OwjYkpVLBw3-s3NO4UyML91BTWA2dQ",
+  authDomain: "student-store-dba7c.firebaseapp.com",
+  projectId: "student-store-dba7c",
+  storageBucket: "student-store-dba7c.appspot.com",
+  messagingSenderId: "754671843081",
+  appId: "1:754671843081:web:c9b28b5eba77fd4798c5d8"
+};
+// Initialize Firebase
+const fire=firebase.initializeApp(firebaseConfig);
+  export default fire

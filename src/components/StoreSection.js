@@ -40,12 +40,7 @@ function StoreSection() {
             img:'',
             btnText:'Buy'
         },
-        {
-            id:7,
-            title:'Amazon Prime',
-            img:'',
-            btnText:'Buy'
-        },
+        
         
     ]
     return (
