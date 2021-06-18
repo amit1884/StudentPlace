@@ -19,7 +19,7 @@ function Profile() {
 
        const data=localStorage.getItem('userData')
        let localData=JSON.parse(data)
-       setUserData(localData.additionalData);
+       setUserData(localData?.additionalData);
     },[])
     return (
         <>
