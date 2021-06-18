@@ -1,4 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Design and Work Flow
+
+1. SignUp (if do not have account)
+2. On signing up, fill the additional info
+3. Login (If has account)
+4. Redirected to home page
+5. Click on "cart" button to add product in cart or "Buy" button to add products in Orders list
+6. Click on "Profile" button on the header to view profile
+7. Profile consist of personal details , Cart and order Info.
+8. Click logout button to exit.
 
 ## Available Scripts
 
