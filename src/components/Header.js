@@ -8,10 +8,11 @@ function Header() {
     const {state}=useContext(UserContext)
     console.log(state)
     const handleLogout=()=>{
-        console.log('logout clicked')
+        localStorage.clear()
         fire
         .auth()
         .signOut()
+        
     }
     return (
         <div className="header-container" id="header">

@@ -70,7 +70,7 @@ function AdditionalInfoForm() {
             <div className="d-flex align-items-center justify-content-center flex-direction-column">
             <input type="text" placeholder="Address" value={address} onChange={(e)=>setAddress(e.target.value)} className="auth_input"/>
             </div>
-            <button type="submit" className="auth_btn mt-10 cursor-pointer">
+            <button type="submit" className="auth_btn mt-10 cursor-pointer cursor-pointer d-flex justify-content-center align-items-center">
                 {
                     loading?
                     <Spinner width="25px" height="25px"/>
