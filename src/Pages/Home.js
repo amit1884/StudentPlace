@@ -8,7 +8,6 @@ import ReferImage from '../assets/images/refer.png'
 import IPL from '../assets/images/ipl2.png'
 import FeedBack from '../components/FeedBack'
 import NewsLetter from '../components/NewsLetter'
-import GoToTop from '../components/GoToTop'
 import Footer from '../components/Footer'
 function Home() {
 
@@ -16,7 +15,6 @@ function Home() {
         <div>
             <Header/>
             <Hero/>
-            <GoToTop/>
             <div className="container-fluid " id="store">
             <div className="row">
                 <StoreSection/>

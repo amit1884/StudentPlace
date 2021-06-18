@@ -2,7 +2,7 @@ import React from 'react'
 function Card({item,addToCart,orderHandle}) {
     return (
         <div className="col-md-4 col-sm-12 col-xs-12">
-             <div class="card mycard" >
+             <div class="card mycard" data-aos="fade-up" >
                 <div className="img_card_wrapper">
                 <img src={item.img} class="card__thumbnail" alt=""/>
                 </div>

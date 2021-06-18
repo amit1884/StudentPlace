@@ -7,11 +7,15 @@ import Home from './Pages/Home'
 import Auth from './Pages/Auth';
 import Profile from './Pages/Profile';
 import AdditionalInfo from './Pages/AdditionlInfo';
+import GoToTop from './components/GoToTop'
 import Classes from './Pages/Classes';
 import './assets/styles/bootstrap.min.css'
 import './assets/styles/fontawesome.css'
 import './assets/styles/Styles.css'
 import './assets/styles/commonStyles.css'
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Courses from './Pages/Courses';
 export const UserContext=createContext()
 const Routing=()=>{
     const history=useHistory()
@@ -45,6 +49,10 @@ const Routing=()=>{
         })
     }
     useEffect(() => {
+      AOS.init();
+      AOS.refresh();
+    }, []);
+    useEffect(() => {
         authListener() 
     }, [])
     return(
@@ -61,8 +69,11 @@ const Routing=()=>{
         <Route path="/additional_info">
           <AdditionalInfo/>
         </Route>
-        <Route path="/classes/:id">
+        <Route path="/classes/:type/">
           <Classes/>
+        </Route>
+        <Route path="/courses/:type/:id">
+          <Courses/>
         </Route>
       </Switch>
     )
@@ -72,6 +83,7 @@ function App() {
     return (
         <UserContext.Provider value ={{state,dispatch}}>
           <BrowserRouter>
+          <GoToTop/>
             <Routing/>
           </BrowserRouter>
          </UserContext.Provider>

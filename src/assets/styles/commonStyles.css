@@ -5,6 +5,9 @@
     scroll-behavior: smooth;
     font-family: "Dosis", sans-serif;
 }
+div{
+    overflow: hidden;
+}
 button{
     outline:none
 }

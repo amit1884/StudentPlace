@@ -55,7 +55,7 @@ function StoreSection() {
     }
     return (
         <div className="col-md-8 col-sm-12 col-xs-12">
-            <div className="heading ">
+            <div className="heading " data-aos="zoom-in">
                 <p className="text-heading text-center text-uppercase">Deals of the Day</p>
             </div>
             <div className="row">
