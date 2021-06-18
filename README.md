@@ -9,6 +9,15 @@
 7. Profile consist of personal details , Cart and order Info.
 8. Click logout button to exit.
 
+### Testing Data
+
+1. Email: test@gmail.com
+2. Password: 123456
+
+# Note:
+
+1. If any error comes trye to refresh the page.
+
 ## Available Scripts
 
 In the project directory, you can run:
