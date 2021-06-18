@@ -5,12 +5,18 @@
     scroll-behavior: smooth;
     font-family: "Dosis", sans-serif;
 }
+button{
+    outline:none
+}
+button:focus{
+   outline: none; 
+}
 
 .text-heading{
     font-size:30px;
     font-weight:600;
 }
-h6{
+h1,h2,h3,h4,h5,h6,p,li,i{
     overflow: hidden;
 }
 @media(max-width:991px){
@@ -27,7 +33,7 @@ h6{
     color:#fff;
 }
 .text-primary{
-    color:#FF6600;
+    color:#FF6600 !important;
 }
 .text-secondary{
     color:#0F394C !important;

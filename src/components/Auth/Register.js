@@ -2,17 +2,25 @@ import React ,{useState}from 'react'
 import swal from 'sweetalert'
 import fire from '../../config/firebase.config'
 import logo from '../../assets/images/logo.svg'
-
+import {useHistory} from 'react-router-dom'
 function Register({setHasAccount}) {
+    const history =useHistory()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
     const handleRegister=(e)=>{
 
         e.preventDefault();
+        if(password===confirmPassword)
+        {
         fire
         .auth()
         .createUserWithEmailAndPassword(email,password)
+        .then(user=>{
+            if(user){
+                history.push('/additional_info')
+            }
+        })
         .catch(err=>{
             switch(err.code){
                 case "auth/email-already-in-use":
@@ -30,7 +38,13 @@ function Register({setHasAccount}) {
                     break;
             }
         })
-
+    }
+    else{
+        swal({
+            title:'Passwords Mismatched',
+            icon:'warning'
+        })
+    }
     }
     return (
         <div className="auth-form-container">

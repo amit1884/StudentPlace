@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useContext, useState} from 'react'
 import Header from '../components/Header'
 import ClassesNavs from '../components/ClassesNavs'
 import Hero from '../components/Hero'
@@ -11,12 +11,13 @@ import NewsLetter from '../components/NewsLetter'
 import GoToTop from '../components/GoToTop'
 import Footer from '../components/Footer'
 function Home() {
+
     return (
         <div>
             <Header/>
             <Hero/>
             <GoToTop/>
-            <div className="container-fluid">
+            <div className="container-fluid " id="store">
             <div className="row">
                 <StoreSection/>
                 <ClassesNavs/>

@@ -1,22 +1,21 @@
 import React, { useEffect,createContext,useReducer,useContext } from 'react'
 import {BrowserRouter,Route, Switch,useHistory} from 'react-router-dom';
 import {reducer,initialState} from "./Reducers/userReducer"
-import AOS from 'aos';
+import firebase from 'firebase'
 import fire from './config/firebase.config';
 import Home from './Pages/Home'
 import Auth from './Pages/Auth';
+import Profile from './Pages/Profile';
+import AdditionalInfo from './Pages/AdditionlInfo';
+import Classes from './Pages/Classes';
 import './assets/styles/bootstrap.min.css'
+import './assets/styles/fontawesome.css'
 import './assets/styles/Styles.css'
 import './assets/styles/commonStyles.css'
 export const UserContext=createContext()
 const Routing=()=>{
     const history=useHistory()
     const {dispatch}=useContext(UserContext)
-    useEffect(() => {
-      AOS.init({
-        duration : 2000
-      });
-    }, []);
     const authListener=()=>{
         fire.auth().onAuthStateChanged(user=>{
             if(user)
@@ -26,12 +25,21 @@ const Routing=()=>{
                     email:user.email,
                     status:user.emailVerified,
                 }
-                console.log(loggedInUser)
                 dispatch({type:"USER",payload:loggedInUser})
-                history.push('/')
+                firebase.firestore().collection("users").where("user_id", "==", loggedInUser.id)
+              .get()
+              .then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                      localStorage.setItem('userId',doc.id)
+                      let allData={...loggedInUser,additionalData:doc.data()}
+                      localStorage.setItem('userData',JSON.stringify(allData))
+                  });
+              })
+              .catch((error) => {
+                  console.log("Error getting documents: ", error);
+              });
             }
             else{
-                console.log('Login First')
                 history.push("/auth")
             }
         })
@@ -47,9 +55,15 @@ const Routing=()=>{
         <Route path="/auth">
           <Auth/>
         </Route>
-        {/* <Route path="/signup">
-          <SignUp/>
-        </Route> */}
+        <Route path="/profile">
+          <Profile/>
+        </Route>
+        <Route path="/additional_info">
+          <AdditionalInfo/>
+        </Route>
+        <Route path="/classes/:id">
+          <Classes/>
+        </Route>
       </Switch>
     )
   }

@@ -1,8 +1,12 @@
-import React ,{useState}from 'react'
+import React ,{useState,useContext}from 'react'
+import {useHistory} from 'react-router-dom'
 import swal from 'sweetalert'
 import fire from '../../config/firebase.config'
 import logo from '../../assets/images/logo.svg'
+import {UserContext} from '../../App'
 function Login({setHasAccount}) {
+    const history=useHistory()
+    const {dispatch}=useContext(UserContext)
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const handleLogin=(e)=>{
@@ -11,6 +15,16 @@ function Login({setHasAccount}) {
         fire
         .auth()
         .signInWithEmailAndPassword(email,password)
+        .then(user=>{
+            console.log(user)
+            let loggedInUser={
+                id:user.uid,
+                email:user.email,
+                status:user.emailVerified,
+            }
+            dispatch({type:"USER",payload:loggedInUser})
+            history.push('/')
+        })
         .catch(err=>{
             switch(err.code){
                 case "auth/invalid-email":
@@ -47,7 +61,7 @@ function Login({setHasAccount}) {
                 <div className="d-flex align-items-center justify-content-center flex-direction-column">
                 <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} className="auth_input"/>
                 </div>
-                <button type="submit" className="auth_btn mt-10">Login</button>
+                <button type="submit" className="auth_btn mt-10 cursor-pointer">Login</button>
             </form>
             <p onClick={()=>setHasAccount(false)} style={{fontSize:'25px',color:'gray',cursor:'pointer'}}>Create Your Account &nbsp;&#8594;</p>
             </div>
