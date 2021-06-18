@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import logo from '../../assets/images/logo.svg'
 import {UserContext} from '../../App'
 import {useHistory} from 'react-router-dom'
+import Spinner from '../Spinner'
 function AdditionalInfoForm() {
     const {state}=useContext(UserContext)
     const history=useHistory()
@@ -13,8 +14,10 @@ function AdditionalInfoForm() {
     const [branch,setBranch]=useState('')
     const [mobile,setMobile]=useState('')
     const [address,setAddress]=useState('')
+    const [loading,setLoading]=useState(false)
     const AdditionalInfo=(e)=>{
         e.preventDefault();
+        setLoading(true)
         if(id!==''){
             firebase.firestore().collection('users').add({
                 user_id:id,
@@ -29,6 +32,7 @@ function AdditionalInfoForm() {
               })
               .then(saveduser=>{
                   console.log(saveduser)
+                  setLoading(false)
                   history.push('/')
               })
               .catch(function(error) {
@@ -48,7 +52,7 @@ function AdditionalInfoForm() {
                 <img src ={logo} alt=""/>
             </div>
             <div className="mb-10 mt-20 text-heading">
-                <p>Sign in</p>
+                <p>Please provide your details</p>
             </div>
         <form onSubmit={AdditionalInfo} className="auth-form d-flex align-items-center justify-content-center flex-direction-column">
             <div className="d-flex align-items-center justify-content-center flex-direction-column">
@@ -66,7 +70,13 @@ function AdditionalInfoForm() {
             <div className="d-flex align-items-center justify-content-center flex-direction-column">
             <input type="text" placeholder="Address" value={address} onChange={(e)=>setAddress(e.target.value)} className="auth_input"/>
             </div>
-            <button type="submit" className="auth_btn mt-10 cursor-pointer">Submit</button>
+            <button type="submit" className="auth_btn mt-10 cursor-pointer">
+                {
+                    loading?
+                    <Spinner width="25px" height="25px"/>
+                    :'Submit'
+                }
+            </button>
         </form>
         </div>
     </div>

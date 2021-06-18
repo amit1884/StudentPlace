@@ -3,20 +3,24 @@ import swal from 'sweetalert'
 import fire from '../../config/firebase.config'
 import logo from '../../assets/images/logo.svg'
 import {useHistory} from 'react-router-dom'
+import Spinner from '../Spinner'
 function Register({setHasAccount}) {
     const history =useHistory()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [confirmPassword,setConfirmPassword]=useState('')
+    const [loading,setLoading]=useState(false)
     const handleRegister=(e)=>{
 
         e.preventDefault();
+        setLoading(true)
         if(password===confirmPassword)
         {
         fire
         .auth()
         .createUserWithEmailAndPassword(email,password)
         .then(user=>{
+            setLoading(false)
             if(user){
                 history.push('/additional_info')
             }
@@ -65,7 +69,13 @@ function Register({setHasAccount}) {
             <div className="d-flex align-items-center justify-content-center flex-direction-column">
             <input type="password" placeholder="Confirm password" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} className="auth_input"/>
             </div>
-            <button type="submit" className="auth_btn mt-10">Sign Up</button>
+            <button type="submit" className="auth_btn mt-10">
+                {
+                    loading?
+                    <Spinner width="25px" height="25px"/>
+                    :'Sign Up'
+                }
+            </button>
         </form>
         <p onClick={()=>setHasAccount(true)} style={{fontSize:'25px',color:'gray',cursor:'pointer'}}>&#8592;&nbsp;&nbsp;back to Log-in</p>
         </div>

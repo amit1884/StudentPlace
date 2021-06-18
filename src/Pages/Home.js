@@ -1,4 +1,4 @@
-import React,{useEffect, useContext, useState} from 'react'
+import React,{useEffect,useState} from 'react'
 import Header from '../components/Header'
 import ClassesNavs from '../components/ClassesNavs'
 import Hero from '../components/Hero'
@@ -9,8 +9,19 @@ import IPL from '../assets/images/ipl2.png'
 import FeedBack from '../components/FeedBack'
 import NewsLetter from '../components/NewsLetter'
 import Footer from '../components/Footer'
+import Preloader from '../components/Preloader'
 function Home() {
 
+    const[loading,setLoading]=useState(true)
+    useEffect(()=>{
+        setTimeout(()=>{
+            setLoading(false)
+        },500)
+    },[])
+    if(loading){
+        return <Preloader/>
+    }
+    else
     return (
         <div>
             <Header/>

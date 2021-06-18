@@ -4,14 +4,17 @@ import swal from 'sweetalert'
 import fire from '../../config/firebase.config'
 import logo from '../../assets/images/logo.svg'
 import {UserContext} from '../../App'
+import Spinner from '../Spinner'
 function Login({setHasAccount}) {
     const history=useHistory()
     const {dispatch}=useContext(UserContext)
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+    const [loading,setLoading]=useState(false)
     const handleLogin=(e)=>{
 
         e.preventDefault();
+        setLoading(true)
         fire
         .auth()
         .signInWithEmailAndPassword(email,password)
@@ -22,6 +25,7 @@ function Login({setHasAccount}) {
                 email:user.email,
                 status:user.emailVerified,
             }
+            setLoading(false)
             dispatch({type:"USER",payload:loggedInUser})
             history.push('/')
         })
@@ -61,7 +65,13 @@ function Login({setHasAccount}) {
                 <div className="d-flex align-items-center justify-content-center flex-direction-column">
                 <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} className="auth_input"/>
                 </div>
-                <button type="submit" className="auth_btn mt-10 cursor-pointer">Login</button>
+                <button type="submit" className="auth_btn mt-10 cursor-pointer d-flex justify-content-center align-items-center">
+                    {
+                        loading?
+                        <Spinner width="25px" height="25px"/>
+                        :'Login'
+                    }
+                </button>
             </form>
             <p onClick={()=>setHasAccount(false)} style={{fontSize:'25px',color:'gray',cursor:'pointer'}}>Create Your Account &nbsp;&#8594;</p>
             </div>
